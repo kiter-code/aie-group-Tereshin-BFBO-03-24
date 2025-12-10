@@ -15,11 +15,5 @@ dependencies = [
     "typer>=0.20.0",
 ]
 
-[tool.setuptools]
-packages = ["eda_cli"]
-
-[tool.setuptools.package-dir]
-"" = "src"
-
 [project.scripts]
 eda-cli = "eda_cli.cli:app"

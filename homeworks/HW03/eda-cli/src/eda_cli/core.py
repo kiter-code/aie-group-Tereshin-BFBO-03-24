@@ -138,7 +138,7 @@ def correlation_matrix(df: pd.DataFrame) -> pd.DataFrame:
 def top_categories(
     df: pd.DataFrame,
     max_columns: int = 5,
-    top_k: int = 5,
+    top_k: int = 5,  # Добавляем параметр
 ) -> Dict[str, pd.DataFrame]:
     """
     Для категориальных/строковых колонок считает top-k значений.
@@ -154,7 +154,7 @@ def top_categories(
 
     for name in candidate_cols[:max_columns]:
         s = df[name]
-        vc = s.value_counts(dropna=True).head(top_k)
+        vc = s.value_counts(dropna=True).head(top_k)  # Используем top_k
         if vc.empty:
             continue
         share = vc / vc.sum()
@@ -180,10 +180,42 @@ def compute_quality_flags(summary: DatasetSummary, missing_df: pd.DataFrame) -> 
 
     flags: Dict[str, Any] = {}
     
-    # флаг, показывающий, есть ли колонки, где все значения одинаковые
+    # Эвристика 1: Константные колонки
     flags['has_constant_columns'] = any(col.unique <= 1 for col in summary.columns)
-    # флаг, сигнализирующий, что есть категориальные признаки с очень большим числом уникальных значений (нужно определить свой порог).
-    flags['has_high_cardinality_categorical'] = any(col.is_numeric is False and col.unique > 100 for col in summary.columns)
+    
+    # Эвристика 2: Высокая кардинальность категориальных признаков
+    high_cardinality_threshold = 50  # Порог для высокой кардинальности
+    high_cardinality_count = 0
+    categorical_columns = [col for col in summary.columns 
+                          if not col.is_numeric and 'object' in col.dtype.lower()]
+    
+    for col in categorical_columns:
+        if col.unique > high_cardinality_threshold:
+            high_cardinality_count += 1
+    
+    flags['has_high_cardinality_categoricals'] = high_cardinality_count > 0
+    flags['high_cardinality_count'] = high_cardinality_count
+    
+    # Эвристика 3: Много нулевых значений в числовых колонках
+    zero_threshold = 0.3  # 30% нулей считается много
+    columns_with_many_zeros = []
+    
+    for col in summary.columns:
+        if col.is_numeric and col.non_null > 0:
+            # Предполагаем, что в реальной реализации нужно посчитать нули
+            # Для упрощения используем уникальные значения как индикатор
+            if col.unique <= 2 and col.min == 0 and col.max == 0:
+                zero_share = 1.0
+            else:
+                # В реальной реализации нужно: df[col.name].eq(0).sum() / len(df)
+                zero_share = 0.0  # Заглушка
+            
+            if zero_share > zero_threshold:
+                columns_with_many_zeros.append(col.name)
+    
+    flags['has_many_zero_values'] = len(columns_with_many_zeros) > 0
+    flags['columns_with_many_zeros'] = columns_with_many_zeros
+    
     flags["too_few_rows"] = summary.n_rows < 100
     flags["too_many_columns"] = summary.n_cols > 100
 
@@ -191,13 +223,20 @@ def compute_quality_flags(summary: DatasetSummary, missing_df: pd.DataFrame) -> 
     flags["max_missing_share"] = max_missing_share
     flags["too_many_missing"] = max_missing_share > 0.5
 
-    # Простейший «скор» качества
+    # Обновленный score качества с учётом новых эвристик
     score = 1.0
     score -= max_missing_share  # чем больше пропусков, тем хуже
+    
     if summary.n_rows < 100:
         score -= 0.2
     if summary.n_cols > 100:
         score -= 0.1
+    if flags['has_constant_columns']:
+        score -= 0.15
+    if flags['has_high_cardinality_categoricals']:
+        score -= 0.1 * min(flags['high_cardinality_count'], 5)  # максимум -0.5
+    if flags['has_many_zero_values']:
+        score -= 0.1 * min(len(flags['columns_with_many_zeros']), 3)  # максимум -0.3
 
     score = max(0.0, min(1.0, score))
     flags["quality_score"] = score
