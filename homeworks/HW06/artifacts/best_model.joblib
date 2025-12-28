@@ -1,0 +1,3 @@
+import joblib
+
+joblib.dump(rf, "homeworks/HW06/artifacts/best_model.joblib")

@@ -1,0 +1,13 @@
+search_summary = {
+    "DecisionTree": {
+        "best_params": grid_tree.best_params_,
+        "best_cv_score": float(grid_tree.best_score_)
+    },
+    "RandomForest": {
+        "best_params": grid_rf.best_params_,
+        "best_cv_score": float(grid_rf.best_score_)
+    }
+}
+
+with open("homeworks/HW06/artifacts/search_summaries.json", "w") as f:
+    json.dump(search_summary, f, indent=4)

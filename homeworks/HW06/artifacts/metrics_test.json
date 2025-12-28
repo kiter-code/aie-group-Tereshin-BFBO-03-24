@@ -1,0 +1,11 @@
+import json
+
+metrics = {
+    "DecisionTree": {"accuracy": float(tree_acc), "f1": float(tree_f1), "roc_auc": float(tree_auc)},
+    "Bagging": {"accuracy": float(bag_acc), "f1": float(bag_f1), "roc_auc": float(bag_auc)},
+    "RandomForest": {"accuracy": float(rf_acc), "f1": float(rf_f1), "roc_auc": float(rf_auc)},
+    "GradientBoosting": {"accuracy": float(gb_acc), "f1": float(gb_f1), "roc_auc": float(gb_auc)}
+}
+
+with open("homeworks/HW06/artifacts/metrics_test.json", "w") as f:
+    json.dump(metrics, f, indent=4)

@@ -1,0 +1,12 @@
+best_model_meta = {
+    "model_name": "RandomForestClassifier",
+    "best_params": rf.get_params(),
+    "test_metrics": {
+        "accuracy": float(rf_acc),
+        "f1": float(rf_f1),
+        "roc_auc": float(rf_auc)
+    }
+}
+
+with open("homeworks/HW06/artifacts/best_model_meta.json", "w") as f:
+    json.dump(best_model_meta, f, indent=4)
