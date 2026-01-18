@@ -1,0 +1,23 @@
+{
+    "dataset_1": {
+        "best_method": "KMeans",
+        "params": {
+            "k": 5
+        },
+        "criterion": "max_silhouette"
+    },
+    "dataset_2": {
+        "best_method": "KMeans",
+        "params": {
+            "k": 4
+        },
+        "criterion": "max_silhouette"
+    },
+    "dataset_3": {
+        "best_method": "KMeans",
+        "params": {
+            "k": 6
+        },
+        "criterion": "max_silhouette"
+    }
+}

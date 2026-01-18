@@ -1,0 +1,26 @@
+{
+    "dataset_1": {
+        "KMeans": {
+            "silhouette": 0.3548010094581461,
+            "davies_bouldin": 1.2737186882233407,
+            "calinski_harabasz": 8301.205993638541,
+            "n_clusters": 5
+        }
+    },
+    "dataset_2": {
+        "KMeans": {
+            "silhouette": 0.2514805632951281,
+            "davies_bouldin": 1.2998187751155688,
+            "calinski_harabasz": 2915.565357085485,
+            "n_clusters": 4
+        }
+    },
+    "dataset_3": {
+        "KMeans": {
+            "silhouette": 0.2931494991387998,
+            "davies_bouldin": 1.1407688365074904,
+            "calinski_harabasz": 6097.475389176515,
+            "n_clusters": 6
+        }
+    }
+}
