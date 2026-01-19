@@ -1,26 +1,50 @@
 {
-    "dataset_1": {
-        "KMeans": {
-            "silhouette": 0.3548010094581461,
-            "davies_bouldin": 1.2737186882233407,
-            "calinski_harabasz": 8301.205993638541,
-            "n_clusters": 5
-        }
+  "S07-hw-dataset-01.csv": {
+    "KMeans": {
+      "silhouette": 0.5216395622404242,
+      "davies_bouldin": 0.6853295219054459,
+      "calinski_harabasz": 11786.95462267153,
+      "noise_ratio": 0.0,
+      "n_clusters": 2
     },
-    "dataset_2": {
-        "KMeans": {
-            "silhouette": 0.2514805632951281,
-            "davies_bouldin": 1.2998187751155688,
-            "calinski_harabasz": 2915.565357085485,
-            "n_clusters": 4
-        }
-    },
-    "dataset_3": {
-        "KMeans": {
-            "silhouette": 0.2931494991387998,
-            "davies_bouldin": 1.1407688365074904,
-            "calinski_harabasz": 6097.475389176515,
-            "n_clusters": 6
-        }
+    "DBSCAN": {
+      "silhouette": 0.28312477366901373,
+      "davies_bouldin": 0.946760657362018,
+      "calinski_harabasz": 4301.220982297523,
+      "noise_ratio": 0.03366666666666662,
+      "n_clusters": 9
     }
+  },
+  "S07-hw-dataset-02.csv": {
+    "KMeans": {
+      "silhouette": 0.27004522856451274,
+      "davies_bouldin": 1.2226592908750664,
+      "calinski_harabasz": 3082.272074544635,
+      "noise_ratio": 0.0,
+      "n_clusters": 3
+    },
+    "Agglomerative": {
+      "silhouette": 0.3050965325187558,
+      "davies_bouldin": 0.977029503551066,
+      "calinski_harabasz": 416.1415425758576,
+      "noise_ratio": 0.0,
+      "n_clusters": 3
+    }
+  },
+  "S07-hw-dataset-03.csv": {
+    "KMeans": {
+      "silhouette": 0.3146186578997614,
+      "davies_bouldin": 1.1596756007747975,
+      "calinski_harabasz": 6492.278930703822,
+      "noise_ratio": 0.0,
+      "n_clusters": 4
+    },
+    "DBSCAN": {
+      "silhouette": -0.03983641036245178,
+      "davies_bouldin": 1.0100179217792784,
+      "calinski_harabasz": 1256.321544672525,
+      "noise_ratio": 0.04953333333333332,
+      "n_clusters": 6
+    }
+  }
 }
