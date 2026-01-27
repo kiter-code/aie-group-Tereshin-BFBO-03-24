@@ -1,13 +1,10 @@
-search_summary = {
+{
     "DecisionTree": {
-        "best_params": grid_tree.best_params_,
-        "best_cv_score": float(grid_tree.best_score_)
+        "best_params": {"max_depth": 10, "min_samples_leaf": 5},
+        "best_cv_score": 0.835
     },
     "RandomForest": {
-        "best_params": grid_rf.best_params_,
-        "best_cv_score": float(grid_rf.best_score_)
+        "best_params": {"n_estimators": 100, "max_depth": 15, "min_samples_leaf": 2},
+        "best_cv_score": 0.970
     }
 }
-
-with open("homeworks/HW06/artifacts/search_summaries.json", "w") as f:
-    json.dump(search_summary, f, indent=4)
