@@ -1,14 +1,67 @@
 {
-    "model_name": "RandomForestClassifier",
-    "best_params": {
-        "n_estimators": 100,
-        "max_depth": 15,
-        "min_samples_leaf": 2,
-        "random_state": 42
-    },
+  "metadata": {
+    "created_at": "2026-01-27T14:45:26.661858",
+    "dataset": "S06-hw-dataset-01.csv"
+  },
+  "model_info": {
+    "best_model_name": "GradientBoosting",
+    "model_type": "GradientBoostingClassifier",
+    "selection_method": "cv_score_on_train"
+  },
+  "performance": {
+    "cv_score": 0.968670508513154,
     "test_metrics": {
-        "accuracy": 0.933,
-        "f1": 0.891644,
-        "roc_auc": 0.970335
+      "accuracy": 0.927,
+      "f1": 0.8824476650563607,
+      "roc_auc": 0.9682260931389975
     }
+  },
+  "feature_importance": {
+    "top_features": [
+      {
+        "feature": "num18",
+        "importance_mean": 0.0687741250687796
+      },
+      {
+        "feature": "num19",
+        "importance_mean": 0.06341375403742897
+      },
+      {
+        "feature": "num07",
+        "importance_mean": 0.028336866650918613
+      },
+      {
+        "feature": "num04",
+        "importance_mean": 0.014777987731394538
+      },
+      {
+        "feature": "num20",
+        "importance_mean": 0.009484110056716765
+      },
+      {
+        "feature": "num24",
+        "importance_mean": 0.009220822090553017
+      },
+      {
+        "feature": "num01",
+        "importance_mean": 0.005257082352072851
+      },
+      {
+        "feature": "num22",
+        "importance_mean": 0.005209375935644545
+      },
+      {
+        "feature": "num14",
+        "importance_mean": 0.00471132455883545
+      },
+      {
+        "feature": "num16",
+        "importance_mean": 0.0032510207711909044
+      }
+    ]
+  },
+  "decision_tree_check": {
+    "has_complexity_control": false,
+    "complexity_params_used": []
+  }
 }

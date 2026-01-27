@@ -1,10 +1,57 @@
 {
+  "metadata": {
+    "cv_folds": 3,
+    "scoring": "roc_auc",
+    "created_at": "2026-01-27T14:45:26.590899"
+  },
+  "search_results": {
     "DecisionTree": {
-        "best_params": {"max_depth": 10, "min_samples_leaf": 5},
-        "best_cv_score": 0.835
+      "best_params": {
+        "ccp_alpha": 0.0,
+        "criterion": "gini",
+        "max_depth": null,
+        "max_leaf_nodes": null,
+        "min_impurity_decrease": 0.0,
+        "min_samples_leaf": 10,
+        "min_samples_split": 2
+      },
+      "best_cv_score": 0.8978965370880309,
+      "complexity_params_used": [
+        "max_depth",
+        "min_samples_leaf",
+        "min_samples_split",
+        "max_leaf_nodes",
+        "min_impurity_decrease",
+        "ccp_alpha"
+      ],
+      "all_complexity_params": [
+        "max_depth",
+        "min_samples_leaf",
+        "min_samples_split",
+        "max_leaf_nodes",
+        "min_impurity_decrease",
+        "ccp_alpha"
+      ]
     },
     "RandomForest": {
-        "best_params": {"n_estimators": 100, "max_depth": 15, "min_samples_leaf": 2},
-        "best_cv_score": 0.970
+      "best_params": {
+        "max_depth": null,
+        "max_features": "log2",
+        "min_samples_leaf": 2,
+        "min_samples_split": 2,
+        "n_estimators": 100
+      },
+      "best_cv_score": 0.965536391733314
+    },
+    "GradientBoosting": {
+      "best_params": {
+        "learning_rate": 0.1,
+        "max_depth": 5,
+        "min_samples_split": 2,
+        "n_estimators": 100,
+        "subsample": 0.8
+      },
+      "best_cv_score": 0.9668077193583978
     }
+  }
 }
